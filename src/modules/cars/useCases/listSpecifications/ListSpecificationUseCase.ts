@@ -1,11 +1,12 @@
-import { Specification } from '../../entities/Specification';
-import { SpecificationsRepository } from '../../repositories/implementations/SpecificationsRepository';
+import { Specification } from '@modules/cars/infra/typeorm/entities/Specification';
+import { SpecificationsRepository } from '@modules/cars/infra/typeorm/repositories/SpecificationsRepository';
 
 class ListSpecificationsUseCase {
   constructor(private specificationRepository: SpecificationsRepository) {}
 
-  execute(): Specification[] {
-    return this.specificationRepository.list();
+  async execute(): Promise<Specification[]> {
+    const all = await this.specificationRepository.list();
+    return all;
   }
 }
 
